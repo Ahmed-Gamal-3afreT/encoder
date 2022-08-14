@@ -27,7 +27,7 @@ class EncryptDecrypt
         $this->iv = openssl_random_pseudo_bytes($ivlen);
         //$this->iv = self::reverseIv($iv);
 
-        $encrypted = openssl_encrypt($planText, ALG, $this->key, $options=0, $this->iv);
+        $encrypted = openssl_encrypt($planText, ALG, $this->key, $options=OPENSSL_RAW_DATA, $this->iv);
         return $encrypted;
     }
 
@@ -38,7 +38,7 @@ class EncryptDecrypt
     public function decrypt($cipher, $key, $iv){
         $this->iv = $iv; //self::reverseIv($iv);
       
-        $decrepted = openssl_decrypt($cipher, ALG, $key, $options=0, $this->iv);
+        $decrepted = openssl_decrypt($cipher, ALG, $key, $options=OPENSSL_RAW_DATA, $this->iv);
         return $decrepted;
     }
 
